@@ -1,0 +1,126 @@
+:root{
+  --special-text: #94c3ea;
+  --bg: #121212ff;
+  --section-bg: #181818ff; 
+  --text: #edf6f9;
+  --border-wheat: wheat;
+}
+
+body {
+  background-image: url(image.png);
+  background-size: cover;
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-heading {
+  text-align: center;
+  font-weight: 550;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: var(--border-wheat);
+}
+
+.major-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.lyrics-container {
+  flex: 1 1 calc(33.333% - 20px);
+  min-width: 300px;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  background-color: var(--section-bg);
+  border: 3px solid var(--border-wheat);
+  background: transparent;
+}
+
+.lyrics-container:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  background-image: url(red-heart.png);
+  background-size: cover;
+}
+
+.lyrics-head {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  text-align: center;
+  color: var(--special-text);
+}
+
+p {
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Emotion span styles */
+p span {
+  padding: 2px 5px;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+  font-weight: bold;
+}
+
+p span:hover {
+  transform: scale(1.1) rotate(-2deg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Emotion colors */
+.happiness { color: #FFEB3B; }
+.calmness { color: #B2DFDB; }
+.sadness { color: #2196F3; }
+.anger { color: #F44336; }
+.love { color: #E91E63; }
+.excitement { color: #FF9800; }
+.fear { color: #9E9E9E; }
+.trust { color: #4CAF50; }
+.surprise { color: #FFC107; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--special-text);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-wheat);
+}
+
+/* Media query for responsiveness */
+@media (max-width: 1024px) {
+  .lyrics-container {
+    flex: 1 1 calc(50% - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .lyrics-container {
+    flex: 1 1 100%;
+  }
+}
