@@ -1,0 +1,13 @@
+:root{
+  --special-text : #94c3ea;
+  --bg: #121212ff;
+  --section-bg : #181818ff; 
+  --text : #edf6f9;
+  --border-wheat : wheat; 
+}
+
+.contact-major-containor{
+  margin: 0px 50px;
+  display: flex;
+}
+

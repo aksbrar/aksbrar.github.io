@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/responsive.css">
+  <link rel="stylesheet" href="styles/contact-section.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <title>Aks-portfolio</title>
+</head>
+<body>
+  <!-- -------- top-menu ---------  -->
+   <div class="top-menu">
+    <div class="top-menu-icons">
+      <a href="#"><img src="icons/arrow-up.png" alt="navigate to top of page" id="navigate-top-btn" class="top-menu-img"></a>
+      <a href="#"><img src="icons/light-mode.png" id="theme-btn" alt="light or dark mode" class="top-menu-img"></a>
+      <a href="#"><img src="icons/arrow-down.png" alt="navigate to bottom of the page" id="navigate-bottom-btn" class="top-menu-img"></a>
+    </div>
+   </div>
+  <!-- ------- Header ------  -->
+  <header>
+    <div class="header-container">
+      <div class="logo">Aks <span class="speical-text">Brar</span></div>
+      <nav class="links">
+        <ul class="links-container">
+          <li><a href="#" target="_blank" class="link">Projects</a></li>
+          <li><a href="#" target="_blank" class="link">About</a></li>
+          <li><a href="#" target="_blank" class="link">Contact</a></li>
+        </ul>  
+      </nav>
+    </div>
+  </header>
+
+  <!-- ------- Sections -------  -->
+  <section class="section-container">
+    <!-- ---------- flex section -----------  -->
+    <section class="section1">
+      <div class="flex-container">
+        <p class="flex-text">Web Developing? <span class="special-text">Aks</span> with his umm big <span class="special-text">Brain</span> Time!!!</p>
+      </div>
+    </section>
+
+    <!-- ---------- image section ----------  -->
+    <section class="section2">
+      <div class="image-container">
+        <img class="aks-image" src="images/aks.png" alt="Aks standing on metro stairs with a cup of juice in hands">
+      </div>
+    </section>
+
+    <!-- ---------- ceritificates etc section ----  -->
+    <section class="section3">
+
+      <!-- ------ top --------  -->
+      <div class="top">
+        <div class="top-top">
+          <p class="top-top-text">Certificates!</p>
+          <a href="#" target="_blank" class="top-top-icon">
+            <img class="top-top-img icon" src="icons/link.png" alt="icon linked with link to my certificates" >
+          </a>
+        </div>
+        <div class="top-bottom">
+          <div class="certificates-img-container">
+            <img class="certificates-img" src="images/certificates.jpg" alt="some certificates just randomised">
+          </div>
+        </div>
+      </div>
+
+      <!-- ---- bottttom -----  -->
+      <div class="bottom">
+        <ul class="bottom-ul">
+          <li class="bottom-link">
+            <a href="#" class="bottom-a">Example</a>
+          </li>
+          <li class="bottom-link">
+            <a href="#" class="bottom-a">Example</a>
+          </li>
+          <li class="bottom-link">
+            <a href="#" class="bottom-a">Example</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ---------- little about -----------  -->
+    <section class="section4">
+      <div class="about-me-container">
+        <p class="about-me-text">
+          <span class="special-text">Aks</span> Brar, is a young aspiring <span class="special-text">web developer</span> that is dedicated into becoming a <span class="special-text">full stack web developer</span> with knowledge of almost all kinds of technologies!
+        </p>
+      </div>
+    </section>
+
+    <!-- ---------- Contact Section --------  -->
+    <section class="section5">
+      <div class="contact-me-container">
+        <div class="top">
+          <div class="top-text">Have some<br>Questions?</div>
+          <div class="top-icon">
+            <a class="contact-me-link" href="#" target="_blank">
+              <img class="top-icon-image icon" alt="icon for contact me" src="icons/link.png">
+            </a>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="bottom-text">Contact Me</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Extra Links ------------  -->
+    <section class="section6">
+      <ul class="extra-links-ul">
+        <li class="extra-links-li">
+          <a class="extra-links-a instagram" href="https://www.instagram.com/aks_cursed/" target="_blank">
+            <img class="icon-social" src="icons/instagram.png" alt="instagram-new"/>
+          </a>
+        </li>
+        <li class="extra-links-li">
+          <a class="extra-links-a linkedin" href="https://www.linkedin.com/in/akspreet" target="_blank">
+            <img class="icon-social" src="icons/linkedin.png" alt="linkedin"/>
+          </a>
+        </li>
+        <li class="extra-links-li">
+          <a class="extra-links-a telegram" href="https://t.me/aksbrar" target="_blank">
+            <img class="icon-social" src="icons/telegram.png" alt="telegram-app"/>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </section>
+
+  <!-- ----------- Contact  Section with form --------------  -->
+   <section id="contactMajorContainer" class="contact-major-containor">
+    <div class="contact-form-container">
+      <form class="main-form" action="/">
+        <h2 class="form-heading">Contact Me</h2>
+        <label for="name">Name</label>
+        <input 
+               type="text" 
+               id="name" 
+               name="name"
+               placeholder="James Bond" 
+               required
+        />
+        <label for="email">Email</label>
+        <input 
+               type="email" 
+               id="email" 
+               name="email" 
+               placeholder="jbond@example.com" 
+               required 
+        />
+        <label for="message">Message</label>
+        <textarea 
+                 name="message" 
+                 id="message" 
+                 placeholder="Hey aks! i want to xyz"
+        ></textarea> 
+        <button class="submit-btn">Submit</button>
+      </form>
+    </div>
+    <div class="contact-sections-container">
+      <div class="contact-section-1">
+
+      </div>
+      <div class="contact-section-2">
+
+      </div>
+    </div>
+   </section>
+  
+  <script src="index.js"></script>
+
+</body>
+</html>
+
