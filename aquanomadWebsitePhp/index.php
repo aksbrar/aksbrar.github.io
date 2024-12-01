@@ -42,28 +42,28 @@
                   <li>
                      <a
                         class="header__navigation-item active"
-                        href="./index.html"
+                        href="./index.php"
                         >Homepage</a
                      >
                   </li>
                   <li>
                      <a
                         class="header__navigation-item"
-                        href="./pages/about.html"
+                        href="./pages/about.php"
                         >About us</a
                      >
                   </li>
                   <li>
                      <a
                         class="header__navigation-item"
-                        href="./pages/product.html"
+                        href="./pages/product.php"
                         >Product</a
                      >
                   </li>
                   <li>
                      <a
                         class="header__navigation-item"
-                        href="./pages/contacts.html"
+                        href="./pages/contacts.php"
                         >Contacts</a
                      >
                   </li>
@@ -75,7 +75,7 @@
                      Fuel Your Adventure Grab Your Perfect Bottle Now!
                   </h1>
                   <a
-                     href="./pages/product.html"
+                     href="./pages/product.php"
                      class="first__screen-button btn"
                      >ORDER NOW</a
                   >
@@ -188,7 +188,7 @@
                      it.
                   </p>
                   <a
-                     href="./pages/product.html"
+                     href="./pages/product.php"
                      class="strengths__content-button btn"
                      >ORDER NOW</a
                   >
@@ -212,7 +212,7 @@
                               hydrated, no matter the adventure!
                            </p>
                            <a
-                              href="./pages/product.html"
+                              href="./pages/product.php"
                               class="product__types-button"
                               ><svg
                                  width="54"
@@ -256,7 +256,7 @@
                      tough, they're the ideal outdoor companion.
                   </p>
                   <a
-                     href="./pages/product.html"
+                     href="./pages/product.php"
                      class="strengths__content-button btn"
                      >ORDER NOW</a
                   >

@@ -42,26 +42,26 @@
 
                   <ul class="header__navigation">
                      <li>
-                        <a class="header__navigation-item" href="../index.html"
+                        <a class="header__navigation-item" href="../index.php"
                            >Homepage</a
                         >
                      </li>
                      <li>
-                        <a class="header__navigation-item" href="./about.html"
+                        <a class="header__navigation-item" href="./about.php"
                            >About us</a
                         >
                      </li>
                      <li>
                         <a
                            class="header__navigation-item active"
-                           href="./product.html"
+                           href="./product.php"
                            >Product</a
                         >
                      </li>
                      <li>
                         <a
                            class="header__navigation-item"
-                           href="./contacts.html"
+                           href="./contacts.php"
                            >Contacts</a
                         >
                      </li>
@@ -104,7 +104,7 @@
                      >
                   </div>
 
-                  <a href="./buy-form.html" class="btn">ORDER NOW</a>
+                  <a href="./buy-form.php" class="btn">ORDER NOW</a>
                   <p class="main-property-title">DESCRIPTION:</p>
                   <p class="main-property-text">
                      Stay ahead of the pack with the AquaNomad Pro, the ultimate

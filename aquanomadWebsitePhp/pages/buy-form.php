@@ -74,7 +74,7 @@
  </header>
 
   <main class="form-container">
-    <form class="form" id="purchaseForm" novalidate>
+    <form class="form" id="purchaseForm" action="buy-handler.php" method="POST" enctype="multipart/form-data" novalidate>
       <h1 class="form-title">Purchase Your Perfect Bottle</h1>
       
       <div class="form-grid">

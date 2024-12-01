@@ -42,26 +42,26 @@
 
                   <ul class="header__navigation">
                      <li>
-                        <a class="header__navigation-item" href="../index.html"
+                        <a class="header__navigation-item" href="../index.php"
                            >Homepage</a
                         >
                      </li>
                      <li>
                         <a
                            class="header__navigation-item active"
-                           href="./about.html"
+                           href="./about.php"
                            >About us</a
                         >
                      </li>
                      <li>
-                        <a class="header__navigation-item" href="./product.html"
+                        <a class="header__navigation-item" href="./product.php"
                            >Product</a
                         >
                      </li>
                      <li>
                         <a
                            class="header__navigation-item"
-                           href="./contacts.html"
+                           href="./contacts.php"
                            >Contacts</a
                         >
                      </li>
