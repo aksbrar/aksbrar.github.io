@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Striped Umbrella Spa</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="assets/images/su_banner.gif" alt="Striped Umbrella Spa banner">
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Our Services</a></li>
+                    <li><a href="contact.html" aria-current="page">Contact Us</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <h1>Contact Us</h1>
+
+            <form>
+                <fieldset>
+                    <legend>Personal Information</legend>
+                    <label for="fname">First Name:* </label>
+                    <input type="text" id="fname" name="firstname" required maxlength="25"><br>
+
+                    <label for="lname">Last Name:* </label>
+                    <input type="text" id="lname" name="lastname" required maxlength="25"><br>
+
+                    <label for="email">Email:* </label>
+                    <input type="email" id="email" name="email" required maxlength="35">
+                </fieldset>
+
+                <fieldset>
+                    <legend>Your Message</legend>
+                    <label for="msg">Message:</label><br>
+                    <textarea id="msg" name="message" rows="5" cols="40"></textarea><br>
+
+                    <label for="source">How did you hear about us?</label>
+                    <select id="source" name="source">
+                        <option selected>Our website</option>
+                        <option>Friends</option>
+                        <option>TV Adv.</option>
+                        <option>Other</option>
+                    </select><br>
+
+                    <p>Would you like to receive updates?</p>
+                    <label><input type="radio" name="updates" value="yes" checked> Yes</label>
+                    <label><input type="radio" name="updates" value="no"> No</label>
+                </fieldset>
+
+                <input type="submit" value="Submit">
+            </form>
+
+            <section>
+                <h2>Find Us</h2>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!..." 
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 ILAC and EFREI Paris – HTML-CSS major lab-work — created by Papa. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
