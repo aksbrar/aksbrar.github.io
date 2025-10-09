@@ -1,6 +1,11 @@
+/* Import Google Fonts for a more elegant typography */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
+
 /* Q#: All the elements have margin of 0 from the top, bottom, left, and right */
 * {
     margin: 0;
+    padding: 0; /* Adding padding reset for better consistency */
+    box-sizing: border-box; /* Modern standard for box model */
 }
 
 /* 1. HTML5 new elements display as block-level for older browsers */
@@ -11,151 +16,189 @@ header, nav, main, section, article, aside, figure, figcaption, footer {
 /* 2. Style the <body> element */
 body {
     color: #333333;
-    background-image: url('../assets/images/dark-wood-1.jpg'); /* Make sure this path and filename are correct! */
-    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F4F4F4; /* A light grey background instead of a wood texture */
+    font-family: 'Lato', Arial, Helvetica, sans-serif; /* New font */
     margin: 0;
 }
 
 /* 3. Style the <div> element with class "container" */
 div.container {
     width: 950px;
-    margin: 5px auto; /* 5px top/bottom, and 'auto' for left/right centers it */
-    background-color: #F7F5E6; /* A light beige background */
+    margin: 20px auto; /* Increased top/bottom margin */
+    background-color: #FFFFFF; /* Clean white background */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Soft shadow for depth */
+    border-radius: 8px; /* Slightly rounded corners */
+    overflow: hidden; /* Ensures box-shadow contains child elements */
 }
 
 /* 4. Style any element with class value of "content" */
 .content {
-    line-height: 1.4em;
-    padding: 10px;
+    line-height: 1.6em; /* Increased for better readability */
+    padding: 25px; /* Increased padding */
 }
 
 /* 5. Style the "header, nav, and footer" elements */
 header, nav, footer {
-    background-color: #005A8D; /* A dark blue */
-    color: #FFFFFF; /* White text */
+    background-color: #333333; /* Dark charcoal for header/footer */
+    color: #F4F4F4; /* Off-white text */
+}
+header {
+    line-height: 0; /* Fixes extra space below banner image */
 }
 
 /* 6. Style the <ul> which is inside <nav> */
 nav ul {
     margin: 0;
-    padding: 5px;
+    padding: 15px 5px; /* Increased padding for more space */
+    text-align: center; /* Center the nav items */
 }
 
 /* 7. Style the list items <li> of the main navigation */
 nav li {
-    display: inline-block; /* Makes list items appear horizontally */
-    margin-right: 40px;
+    display: inline-block;
+    margin: 0 20px; /* Use horizontal margin instead of just right */
     text-transform: uppercase;
+    letter-spacing: 1px; /* Adds a bit of space between letters */
 }
 
 /* 8. Add pseudo classes effect to the anchor tags of the main navigation */
+nav a {
+    transition: color 0.3s ease; /* Smooth color transition */
+}
 nav a:link {
-    color: #FFFFFF; /* White */
+    color: #FFFFFF;
 }
 nav a:visited {
-    color: #E0E0E0; /* Light Grey */
+    color: #E0E0E0;
 }
 nav a:hover {
-    color: #FFD700; /* Gold */
+    color: #A7C957; /* A brighter, fresh green for hover */
 }
 nav a:active {
-    color: #FFA500; /* Orange */
+    color: #8AB04B;
 }
 
 /* 9. Style any anchor <a> element */
 a {
-    color: #005A8D; /* Dark blue */
-    text-decoration: none; /* No underline */
+    color: #6A994E; /* Main site link color - Sage Green */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: #386641; /* Darker green on hover */
 }
 
 /* 10. Style the three headings: h1, h2, and h3 */
 h1, h2, h3 {
-    margin: 10px;
+    font-family: 'Lora', 'Times New Roman', serif; /* New elegant serif font */
+    margin: 20px 0 10px 0;
     text-transform: uppercase;
-    color: #D2691E; /* A warm brown/orange color */
+    color: #386641; /* Darker Sage Green */
 }
 
 /* 11. Style the custom class named "img-centre" */
 .img-centre {
-    display: block; /* Required to allow for auto margins */
-    margin: 5px auto; /* Centers the image horizontally */
+    display: block;
+    margin: 15px auto;
     padding: 2px;
+    border-radius: 4px; /* Slight rounding on image */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 /* 12. Style the <audio> and <video> elements */
 audio, video {
-    display: block; /* Required to allow for auto margins */
-    margin: 10px auto; /* Centers the element horizontally */
+    display: block;
+    margin: 15px auto;
 }
 
 /* 13. Style any <table> element */
 table {
-    width: 800px;
-    margin: 10px auto; /* Centers the table horizontally */
+    width: 100%; /* Make table responsive within its container */
+    max-width: 800px;
+    margin: 20px auto;
     border-collapse: collapse;
 }
 
-/* 14. Style both the <td> and <th> element of any table */
+/* 14. Style both the <td> and <th> element of any table - Modern Look */
 td, th {
-    border: 1px solid #005A8D; /* Dark blue border */
-    padding: 2px 5px;
-    background-color: #FDFBF0; /* Off-white */
+    padding: 12px 10px; /* More padding */
+    text-align: left;
+    border-bottom: 1px solid #DDDDDD; /* Horizontal lines instead of full borders */
 }
 
 /* 15. Style both <th> inside any table and <td> inside <tfoot> */
 th, tfoot td {
     text-transform: uppercase;
-    background-color: #BDB7A1; /* A muted beige/green */
-    color: #FFFFFF; /* White text */
+    background-color: #F4F4F4; /* Light grey header/footer */
+    color: #386641; /* Dark green text */
+    font-weight: bold;
+}
+/* Remove bottom border from footer row for a cleaner look */
+tfoot tr:last-child td {
+    border-bottom: none;
 }
 
 /* 16. Style any <dt> element */
 dt {
     font-weight: bold;
+    color: #386641;
+    margin-top: 10px;
 }
 
 /* 17. Style any <footer> element */
 footer {
-    font-size: 80%;
+    font-size: 85%; /* Slightly larger */
     text-align: center;
-    padding: 1px 0;
+    padding: 20px 0; /* More padding */
+    color: #AAAAAA; /* Softer text color */
 }
 
 /* 18. Style any <iframe> element */
 iframe {
-    display: block; /* Required to allow for auto margins */
-    margin: 10px auto; /* Centers the iframe horizontally */
+    display: block;
+    margin: 20px auto;
+    border: none; /* Remove default border */
+    border-radius: 4px;
 }
 
 /* 19. Style any <fieldset> element */
 fieldset {
-    width: 500px;
-    margin: 20px auto; /* Centers the fieldset horizontally */
-    border: 2px solid #BDB7A1; /* Muted beige/green border */
-    background-color: #FDFBF0; /* Off-white background */
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    border: 1px solid #DDDDDD; /* Softer border */
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 4px;
 }
 
 /* 20. Style any <legend> element */
 legend {
+    font-family: 'Lora', serif;
     font-style: italic;
-    color: #FFFFFF; /* White text */
-    background-color: #005A8D; /* Dark blue background */
-    margin: 0 10px;
-    padding: 0 5px;
-    border-radius: 5px;
+    color: #386641;
+    background-color: transparent;
+    margin: 0;
+    padding: 0 10px; /* Padding on left/right only */
+    font-weight: bold;
+    font-size: 1.1em;
 }
 
 /* 21. Style the submit <input> element */
 input[type="submit"] {
-    border: 1px solid #005A8D;
-    padding: 5px;
-    background-color: #BDB7A1;
+    border: none;
+    padding: 12px 20px;
+    background-color: #6A994E; /* Sage Green */
     color: #FFFFFF;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 /* 22. Style the submit <input> element on hover */
 input[type="submit"]:hover {
-    background-color: #005A8D;
-    color: #FFD700;
-    cursor: pointer; /* Changes the mouse to a hand icon */
+    background-color: #386641; /* Darker green */
+    cursor: pointer;
+    transform: translateY(-2px); /* Slight lift effect */
 }
