@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Assignment - Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="excel.html">Excel</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Membership Registration</h2>
+        <form id="main-form">
+            <div>
+                <label for="fname">First Name:</label>
+                <input type="text" id="fname" required>
+            </div>
+            <div>
+                <label for="lname">Last Name:</label>
+                <input type="text" id="lname" required>
+            </div>
+            <div>
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div>
+                <label for="address">Address:</label>
+                <input type="text" id="address" required>
+            </div>
+            <div>
+                <label for="city">City:</label>
+                <input type="text" id="city" required>
+            </div>
+            <div>
+                <label for="province">Province:</label>
+                <input type="text" id="province" required>
+            </div>
+            <div>
+                <label>Membership Type:</label>
+                <input type="radio" name="membership" id="premium" checked> Premium
+                <input type="radio" name="membership" id="standard"> Standard
+                <input type="radio" name="membership" id="basic"> Basic
+            </div>
+            
+            <button type="submit" id="sendBtn">Send</button>
+            <button type="reset">Cancel</button>
+        </form>
+
+        <div id="output"></div>
+        
+        <button id="themeBtn" class="theme-btn">Switch Theme</button>
+    </main>
+
+    <footer>
+        <p>ILAC & EFREI - HTML, CSS, and JavaScript Assignment</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
