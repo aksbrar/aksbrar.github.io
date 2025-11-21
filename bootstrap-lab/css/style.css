@@ -1,0 +1,30 @@
+* Ensure sections have breathing room */
+section {
+    padding: 60px 0;
+}
+
+/* Feature icons styling */
+.feature-icon {
+    font-size: 3rem;
+    color: #0d6efd;
+    margin-bottom: 1rem;
+}
+
+/* Alternating rows background */
+.bg-light-gray {
+    background-color: #f8f9fa;
+}
+
+/* Instructor card hover effect */
+.card {
+    transition: transform 0.3s;
+}
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Contact section spacing */
+.contact-info i {
+    width: 30px;
+    color: #0d6efd;
+}
