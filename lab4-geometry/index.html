@@ -3,272 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geometry Dashboard</title>
-    <style>
-        /* RESET & BASE STYLES */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: system-ui, -apple-system, sans-serif;
-            background-color: #2c3e50; /* Dark Blue Background */
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
-        }
-
-        /* HEADER STYLES */
-        header {
-            text-align: center;
-            color: #ecf0f1;
-            margin-bottom: 40px;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            color: #bdc3c7;
-            font-size: 1.1rem;
-        }
-
-        /* GRID LAYOUT - FORCED 2x2 */
-        .grid-container {
-            display: grid;
-            /* This forces exactly 2 columns of equal width */
-            grid-template-columns: 1fr 1fr; 
-            gap: 25px;
-            max-width: 900px; /* Made slightly narrower to look nice */
-            margin: 0 auto;
-        }
-
-        /* CARD STYLES */
-        .card {
-            background-color: #ffffff;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-            transition: transform 0.2s ease;
-            border-top: 5px solid #3498db; 
-        }
-
-        .card:hover {
-            transform: translateY(-5px); 
-        }
-
-        .card h2 {
-            margin-bottom: 20px;
-            color: #2c3e50;
-            font-size: 1.5rem;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 10px;
-        }
-
-        /* FORM ELEMENTS */
-        .input-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: #555;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        input[type="text"]:focus {
-            border-color: #3498db;
-            outline: none;
-        }
-
-        input[readonly] {
-            background-color: #f8f9fa;
-            color: #27ae60;
-            font-weight: bold;
-            border-color: #bdc3c7;
-            cursor: not-allowed;
-        }
-
-        /* BUTTON STYLES */
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: #2980b9;
-        }
-
-        /* ACCENT COLORS */
-        #triangle { border-top-color: #e74c3c; } 
-        #triangle button { background-color: #e74c3c; }
-        #triangle button:hover { background-color: #c0392b; }
-
-        #square { border-top-color: #f1c40f; } 
-        #square button { background-color: #f1c40f; color: #333; }
-        #square button:hover { background-color: #f39c12; }
-
-        #rectangle { border-top-color: #9b59b6; } 
-        #rectangle button { background-color: #9b59b6; }
-        #rectangle button:hover { background-color: #8e44ad; }
-
-        /* MOBILE RESPONSIVENESS */
-        /* If screen is smaller than 768px (like a phone), switch to 1 column */
-        @media (max-width: 768px) {
-            .grid-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-    </style>
+    <title>Advanced Geometry Lab Explorer</title>
+    <link rel="stylesheet" href="style.css"> 
 </head>
-<body>
+<body class="style-minimal"> 
 
-    <header>
-        <h1>Geometry Lab</h1>
-        <p>Calculate areas for 2D shapes instantly.</p>
+    <header class="control-panel">
+        <h1>🌌 Geometry Explorer Lab 04</h1>
+        <div class="controls-group">
+            <button id="mode-toggle">☀️/🌙 Toggle Mode</button>
+            <select id="style-selector">
+                <option value="minimal">Minimalist Style</option>
+                <option value="retro">Retro Grid Style</option>
+                <option value="neon">Neon Glow Style</option>
+            </select>
+        </div>
     </header>
 
-    <div class="grid-container">
-        
-        <section class="card" id="circle">
-            <h2>Circle</h2>
-            <div class="input-group">
-                <label for="radius">Radius (r):</label>
-                <input type="text" id="radius" placeholder="Enter radius...">
-            </div>
-            <div class="input-group">
-                <label for="circle-area">Area Result:</label>
-                <input type="text" id="circle-area" readonly placeholder="0.00">
-            </div>
-            <button onclick="getCircleArea()">Calculate Area</button>
-        </section>
+    <main class="carousel-container">
+        <div class="carousel-track">
+            
+            <section class="shape-card circle-card" data-shape="Circle" data-formula="A = \pi r^2" data-color="#3498db">
+                <h2>Circle</h2>
+                <div class="visual-container" onclick="openModal('Circle')">
+                    <div class="animated-circle"></div>
+                </div>
+                <p class="formula-preview">Area: $A = \pi r^2$</p>
 
-        <section class="card" id="triangle">
-            <h2>Triangle</h2>
-            <div class="input-group">
-                <label for="triangle-base">Base (b):</label>
-                <input type="text" id="triangle-base" placeholder="Enter base...">
-            </div>
-            <div class="input-group">
-                <label for="triangle-height">Vertical Height (h):</label>
-                <input type="text" id="triangle-height" placeholder="Enter height...">
-            </div>
-            <div class="input-group">
-                <label for="triangle-area">Area Result:</label>
-                <input type="text" id="triangle-area" readonly placeholder="0.00">
-            </div>
-            <button onclick="getTriangleArea()">Calculate Area</button>
-        </section>
+                <div class="calculator-section">
+                    <div class="input-group">
+                        <label for="radius">Radius (r):</label>
+                        <input type="number" id="radius" placeholder="Enter radius...">
+                    </div>
+                    <div class="input-group">
+                        <label for="circle-area">Area Result:</label>
+                        <input type="text" id="circle-area" readonly placeholder="0.00">
+                    </div>
+                    <button class="calc-btn" onclick="getCircleArea()">Calculate</button>
+                </div>
+            </section>
+            
+            <section class="shape-card triangle-card" data-shape="Triangle" data-formula="A = \frac{1}{2}bh" data-color="#e74c3c">
+                <h2>Triangle</h2>
+                <div class="visual-container" onclick="openModal('Triangle')">
+                    <div class="animated-triangle"></div>
+                </div>
+                <p class="formula-preview">Area: $A = \frac{1}{2}bh$</p>
+                <div class="calculator-section">
+                    <div class="input-group">
+                        <label for="triangle-base">Base (b):</label>
+                        <input type="number" id="triangle-base" placeholder="Enter base...">
+                    </div>
+                    <div class="input-group">
+                        <label for="triangle-height">Height (h):</label>
+                        <input type="number" id="triangle-height" placeholder="Enter height...">
+                    </div>
+                    <div class="input-group">
+                        <label for="triangle-area">Area Result:</label>
+                        <input type="text" id="triangle-area" readonly placeholder="0.00">
+                    </div>
+                    <button class="calc-btn" onclick="getTriangleArea()">Calculate</button>
+                </div>
+            </section>
+            
+            <section class="shape-card square-card" data-shape="Square" data-formula="A = s^2" data-color="#f1c40f">
+                <h2>Square</h2>
+                <div class="visual-container" onclick="openModal('Square')">
+                    <div class="animated-square"></div>
+                </div>
+                <p class="formula-preview">Area: $A = s^2$</p>
+                <div class="calculator-section">
+                    <div class="input-group">
+                        <label for="square-side">Side (s):</label>
+                        <input type="number" id="square-side" placeholder="Enter side...">
+                    </div>
+                    <div class="input-group">
+                        <label for="square-area">Area Result:</label>
+                        <input type="text" id="square-area" readonly placeholder="0.00">
+                    </div>
+                    <button class="calc-btn" onclick="getSquareArea()">Calculate</button>
+                </div>
+            </section>
 
-        <section class="card" id="square">
-            <h2>Square</h2>
-            <div class="input-group">
-                <label for="square-side">Side Length (s):</label>
-                <input type="text" id="square-side" placeholder="Enter side...">
+            <section class="shape-card rectangle-card" data-shape="Rectangle" data-formula="A = w \cdot h" data-color="#9b59b6">
+                <h2>Rectangle</h2>
+                <div class="visual-container" onclick="openModal('Rectangle')">
+                    <div class="animated-rectangle"></div>
+                </div>
+                <p class="formula-preview">Area: $A = w \cdot h$</p>
+                <div class="calculator-section">
+                    <div class="input-group">
+                        <label for="rectangle-width">Width (w):</label>
+                        <input type="number" id="rectangle-width" placeholder="Enter width...">
+                    </div>
+                    <div class="input-group">
+                        <label for="rectangle-height">Height (h):</label>
+                        <input type="number" id="rectangle-height" placeholder="Enter height...">
+                    </div>
+                    <div class="input-group">
+                        <label for="rectangle-area">Area Result:</label>
+                        <input type="text" id="rectangle-area" readonly placeholder="0.00">
+                    </div>
+                    <button class="calc-btn" onclick="getRectangleArea()">Calculate</button>
+                </div>
+            </section>
+            
             </div>
-            <div class="input-group">
-                <label for="square-area">Area Result:</label>
-                <input type="text" id="square-area" readonly placeholder="0.00">
+    </main>
+    
+    <div id="enlargement-modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            
+            <div id="modal-visual-placeholder"></div>
+            
+            <div class="modal-details">
+                <p>Formula: <span id="modal-formula"></span></p>
+                <p id="modal-description"></p>
             </div>
-            <button onclick="getSquareArea()">Calculate Area</button>
-        </section>
-
-        <section class="card" id="rectangle">
-            <h2>Rectangle</h2>
-            <div class="input-group">
-                <label for="rectangle-width">Width (w):</label>
-                <input type="text" id="rectangle-width" placeholder="Enter width...">
+            
+            <div class="customization-group">
+                <label for="color-picker">Live Color Customization:</label>
+                <input type="color" id="color-picker" value="#3498db">
             </div>
-            <div class="input-group">
-                <label for="rectangle-height">Height (h):</label>
-                <input type="text" id="rectangle-height" placeholder="Enter height...">
-            </div>
-            <div class="input-group">
-                <label for="rectangle-area">Area Result:</label>
-                <input type="text" id="rectangle-area" readonly placeholder="0.00">
-            </div>
-            <button onclick="getRectangleArea()">Calculate Area</button>
-        </section>
-
+        </div>
     </div>
 
-    <script>
-        function getCircleArea() {
-            let radiusInput = document.getElementById("radius").value.trim();
-            let radius = parseFloat(radiusInput);
-            
-            if (!isNaN(radius)) {
-                let area = Math.PI * radius * radius;
-                document.getElementById("circle-area").value = area.toFixed(2);
-            } else {
-                document.getElementById("circle-area").value = "Invalid Input";
-            }
-        }
-
-        function getTriangleArea() {
-            let baseInput = document.getElementById("triangle-base").value.trim();
-            let heightInput = document.getElementById("triangle-height").value.trim();
-            let base = parseFloat(baseInput);
-            let height = parseFloat(heightInput);
-
-            if (!isNaN(base) && !isNaN(height)) {
-                let area = 0.5 * base * height;
-                document.getElementById("triangle-area").value = area.toFixed(2);
-            } else {
-                document.getElementById("triangle-area").value = "Invalid Input";
-            }
-        }
-
-        function getSquareArea() {
-            let sideInput = document.getElementById("square-side").value.trim();
-            let side = parseFloat(sideInput);
-
-            if (!isNaN(side)) {
-                let area = side * side;
-                document.getElementById("square-area").value = area.toFixed(2);
-            } else {
-                document.getElementById("square-area").value = "Invalid Input";
-            }
-        }
-
-        function getRectangleArea() {
-            let widthInput = document.getElementById("rectangle-width").value.trim();
-            let heightInput = document.getElementById("rectangle-height").value.trim();
-            let width = parseFloat(widthInput);
-            let height = parseFloat(heightInput);
-
-            if (!isNaN(width) && !isNaN(height)) {
-                let area = width * height;
-                document.getElementById("rectangle-area").value = area.toFixed(2);
-            } else {
-                document.getElementById("rectangle-area").value = "Invalid Input";
-            }
-        }
-    </script>
+    <script src="script.js"></script> 
 </body>
-</html> 
+</html>
