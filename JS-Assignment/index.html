@@ -3,64 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS Assignment - Home</title>
+    <title>Membership Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
     <header>
-        <nav>
+        <nav class="glass-nav">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="excel.html">Excel</a></li>
+                <li><a href="index.html" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="excel.html"><i class="fa-solid fa-table"></i> Excel</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <h2>Membership Registration</h2>
-        <form id="main-form">
-            <div>
-                <label for="fname">First Name:</label>
-                <input type="text" id="fname" required>
-            </div>
-            <div>
-                <label for="lname">Last Name:</label>
-                <input type="text" id="lname" required>
-            </div>
-            <div>
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" required>
-            </div>
-            <div>
-                <label for="address">Address:</label>
-                <input type="text" id="address" required>
-            </div>
-            <div>
-                <label for="city">City:</label>
-                <input type="text" id="city" required>
-            </div>
-            <div>
-                <label for="province">Province:</label>
-                <input type="text" id="province" required>
-            </div>
-            <div>
-                <label>Membership Type:</label>
-                <input type="radio" name="membership" id="premium" checked> Premium
-                <input type="radio" name="membership" id="standard"> Standard
-                <input type="radio" name="membership" id="basic"> Basic
+        <div class="glass-card">
+            <div class="card-header">
+                <div>
+                    <h2>Registrator</h2>
+                    <p class="subtitle">Join the exclusive club</p>
+                </div>
+                <button id="themeBtn" class="icon-btn" title="Switch Theme"><i class="fa-solid fa-moon"></i></button>
             </div>
             
-            <button type="submit" id="sendBtn">Send</button>
-            <button type="reset">Cancel</button>
-        </form>
+            <form id="main-form">
+                <div class="form-row">
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user input-icon"></i>
+                        <input type="text" id="fname" placeholder="First Name" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-signature input-icon"></i>
+                        <input type="text" id="lname" placeholder="Last Name" required>
+                    </div>
+                </div>
 
-        <div id="output"></div>
-        
-        <button id="themeBtn" class="theme-btn">Switch Theme</button>
+                <div class="input-wrapper full-width">
+                    <i class="fa-solid fa-envelope input-icon"></i>
+                    <input type="email" id="email" placeholder="email@domain.com" required>
+                </div>
+
+                <div class="input-wrapper full-width">
+                    <i class="fa-solid fa-location-dot input-icon"></i>
+                    <input type="text" id="address" placeholder="Street Address" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-city input-icon"></i>
+                        <input type="text" id="city" placeholder="City" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-map input-icon"></i>
+                        <input type="text" id="province" placeholder="Province" required>
+                    </div>
+                </div>
+
+                <div class="tier-section">
+                    <label>Select Membership Tier</label>
+                    <div class="tier-options">
+                        <label class="tier-card selected">
+                            <input type="radio" name="membership" id="premium" checked>
+                            <div class="tier-content">
+                                <i class="fa-solid fa-crown"></i>
+                                <span>Premium</span>
+                            </div>
+                        </label>
+                        <label class="tier-card">
+                            <input type="radio" name="membership" id="standard">
+                            <div class="tier-content">
+                                <i class="fa-solid fa-star"></i>
+                                <span>Standard</span>
+                            </div>
+                        </label>
+                        <label class="tier-card">
+                            <input type="radio" name="membership" id="basic">
+                            <div class="tier-content">
+                                <i class="fa-solid fa-user"></i>
+                                <span>Basic</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <button type="submit" id="sendBtn" class="glow-btn">
+                    Register Now <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <button type="reset" class="text-btn">Reset Form</button>
+            </form>
+
+            <div id="output" class="result-card"></div>
+        </div>
     </main>
 
     <footer>
-        <p>ILAC & EFREI - HTML, CSS, and JavaScript Assignment</p>
+        <p>© 2025 ILAC & EFREI Project</p>
     </footer>
 
     <script src="js/script.js"></script>

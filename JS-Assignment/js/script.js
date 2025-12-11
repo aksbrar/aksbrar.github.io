@@ -6,29 +6,42 @@ function userForm() {
     const city = document.getElementById("city").value;
     const province = document.getElementById("province").value;
     
-    let membership = "";
-    if (document.getElementById("premium").checked) {
-        membership = "Premium";
-    } else if (document.getElementById("standard").checked) {
-        membership = "Standard";
-    } else if (document.getElementById("basic").checked) {
-        membership = "Basic";
+    // Check validation
+    if(!firstName || !lastName || !email || !address) {
+        alert("Please fill in all fields!");
+        return;
     }
 
+    let membership = "";
+    if (document.getElementById("premium").checked) membership = "Premium";
+    else if (document.getElementById("standard").checked) membership = "Standard";
+    else if (document.getElementById("basic").checked) membership = "Basic";
+
     const outputDiv = document.getElementById("output");
+    outputDiv.style.display = "block"; 
+    
+    // Add fade in animation reset
+    outputDiv.style.animation = 'none';
+    outputDiv.offsetHeight; /* trigger reflow */
+    outputDiv.style.animation = 'fadeIn 0.5s ease';
+
     outputDiv.innerHTML = `
-        <p><strong>Full Name:</strong> ${firstName} ${lastName}</p>
+        <h3 style="margin-bottom:10px; color:#FF6B8B;"><i class="fa-solid fa-check-circle"></i> Success!</h3>
+        <p><strong>Member:</strong> ${firstName} ${lastName}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Address:</strong> ${address}, ${city}, ${province}</p>
-        <p><strong>Membership:</strong> ${membership}</p>
+        <p><strong>Location:</strong> ${city}, ${province}</p>
+        <p><strong>Tier:</strong> ${membership}</p>
     `;
 }
 
 function myExcelFuns() {
     const numberStr = document.getElementById("numbers").value;
-    
+    const outputDiv = document.getElementById("output");
+    outputDiv.classList.remove("hidden");
+    outputDiv.style.display = "block";
+
     if (!numberStr || numberStr.trim() === "") {
-        alert("Please enter some numbers separated by spaces.");
+        outputDiv.innerHTML = "<p style='color:#ff4d4d'><i class='fa-solid fa-triangle-exclamation'></i> Please enter numbers.</p>";
         return;
     }
 
@@ -42,35 +55,55 @@ function myExcelFuns() {
     }
 
     if (finalNumericArray.length === 0) {
-        alert("No valid numbers found.");
+        outputDiv.innerHTML = "<p style='color:#ff4d4d'><i class='fa-solid fa-triangle-exclamation'></i> No valid numbers found.</p>";
         return;
     }
 
     let result = 0;
+    let icon = "";
+    let label = "";
 
     if (document.getElementById("sum").checked) {
-        let total = 0;
-        for (let i = 0; i < finalNumericArray.length; i++) {
-            total += finalNumericArray[i];
-        }
-        result = total;
+        result = finalNumericArray.reduce((a, b) => a + b, 0);
+        label = "Total Sum";
+        icon = "fa-plus";
     } else if (document.getElementById("avg").checked) {
-        let total = 0;
-        for (let i = 0; i < finalNumericArray.length; i++) {
-            total += finalNumericArray[i];
-        }
-        result = total / finalNumericArray.length;
+        const total = finalNumericArray.reduce((a, b) => a + b, 0);
+        result = (total / finalNumericArray.length).toFixed(2);
+        label = "Average";
+        icon = "fa-divide";
     } else if (document.getElementById("max").checked) {
         result = Math.max(...finalNumericArray);
+        label = "Maximum";
+        icon = "fa-arrow-up";
     } else {
         result = Math.min(...finalNumericArray);
+        label = "Minimum";
+        icon = "fa-arrow-down";
     }
 
-    document.getElementById("output").innerHTML = `Result: ${result}`;
+    outputDiv.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+                <p style="color:#d1d1e0; font-size:0.9rem;">${label}</p>
+                <h2 style="color:#fff; margin:0;">${result}</h2>
+            </div>
+            <i class="fa-solid ${icon}" style="font-size:2rem; opacity:0.2;"></i>
+        </div>
+        <p style="margin-top:10px; font-size:0.8rem; opacity:0.6;">Based on ${finalNumericArray.length} entries</p>
+    `;
 }
 
 function toggleTheme() {
-    document.body.classList.toggle("dark-mode");
+    document.body.classList.toggle("light-mode");
+    const btnIcon = document.querySelector("#themeBtn i");
+    if(document.body.classList.contains("light-mode")) {
+        btnIcon.classList.remove("fa-moon");
+        btnIcon.classList.add("fa-sun");
+    } else {
+        btnIcon.classList.remove("fa-sun");
+        btnIcon.classList.add("fa-moon");
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function() {

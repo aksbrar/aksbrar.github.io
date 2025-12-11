@@ -3,44 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS Assignment - Excel Functions</title>
+    <title>Excel Functions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
     <header>
-        <nav>
+        <nav class="glass-nav">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="excel.html">Excel</a></li>
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="excel.html" class="active"><i class="fa-solid fa-table"></i> Excel</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <h2>Excel Functions</h2>
-        <form onsubmit="return false;">
-            <div>
-                <label for="numbers">Enter your numbers separated by spaces:</label>
-                <input type="text" id="numbers" placeholder="e.g. 23 67 98 90 56">
-            </div>
-            
-            <div>
-                <input type="radio" name="excel" id="sum" checked> AutoSum <br>
-                <input type="radio" name="excel" id="avg"> Average <br>
-                <input type="radio" name="excel" id="max"> Max <br>
-                <input type="radio" name="excel" id="min"> Min
+        <div class="glass-card">
+            <div class="card-header">
+                <div>
+                    <h2>Excel Tool</h2>
+                    <p class="subtitle">Calculate data instantly</p>
+                </div>
+                <button id="themeBtn" class="icon-btn" title="Switch Theme"><i class="fa-solid fa-moon"></i></button>
             </div>
 
-            <button type="button" id="calcBtn">Calculate</button>
-        </form>
+            <form onsubmit="return false;">
+                <label class="field-label">Data Input</label>
+                <div class="input-wrapper full-width">
+                    <i class="fa-solid fa-list-ol input-icon"></i>
+                    <input type="text" id="numbers" placeholder="e.g. 10 20 30 40">
+                </div>
+                
+                <label class="field-label">Function</label>
+                <div class="function-grid">
+                    <label class="func-option">
+                        <input type="radio" name="excel" id="sum" checked>
+                        <span><i class="fa-solid fa-plus"></i> Sum</span>
+                    </label>
+                    <label class="func-option">
+                        <input type="radio" name="excel" id="avg">
+                        <span><i class="fa-solid fa-divide"></i> Avg</span>
+                    </label>
+                    <label class="func-option">
+                        <input type="radio" name="excel" id="max">
+                        <span><i class="fa-solid fa-arrow-up"></i> Max</span>
+                    </label>
+                    <label class="func-option">
+                        <input type="radio" name="excel" id="min">
+                        <span><i class="fa-solid fa-arrow-down"></i> Min</span>
+                    </label>
+                </div>
 
-        <div id="output">Result will be printed here</div>
-        
-        <button id="themeBtn" class="theme-btn">Switch Theme</button>
+                <button type="button" id="calcBtn" class="glow-btn">
+                    Calculate Result
+                </button>
+            </form>
+
+            <div id="output" class="result-card hidden"></div>
+        </div>
     </main>
 
     <footer>
-        <p>HTML, CSS, and JavaScript Assignment</p>
+        <p>© 2025 ILAC & EFREI Project</p>
     </footer>
 
     <script src="js/script.js"></script>
