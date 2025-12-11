@@ -2,134 +2,150 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const modeToggle = document.getElementById('mode-toggle');
     const styleSelector = document.getElementById('style-selector');
-    const modal = document.getElementById('enlargement-modal');
+    const modal = document.getElementById('modal-overlay');
     const colorPicker = document.getElementById('color-picker');
-    const modalVisualPlaceholder = document.getElementById('modal-visual-placeholder');
+    const modalVisual = document.getElementById('modal-visual-container');
 
-    let currentModalShapeClass = '';
+    let currentModalShape = '';
 
-    // --- A. Dark/Day Mode Toggle ---
+    // --- 1. Mode & Style Logic ---
     modeToggle.addEventListener('click', () => {
         body.classList.toggle('dark-mode');
-        // Optional: Save preference to localStorage
-        // localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
     });
 
-    // --- B. Style Selector ---
     styleSelector.addEventListener('change', (e) => {
-        // Remove all style classes
-        body.classList.remove('style-minimal', 'style-retro', 'style-neon');
-        // Add the selected style class
-        body.classList.add(`style-${e.target.value}`);
+        body.classList.remove('style-elegant', 'style-nature');
+        if(e.target.value !== 'soft') {
+            body.classList.add(`style-${e.target.value}`);
+        }
     });
 
-    // --- C. Shape Click and Modal Logic ---
-    window.openModal = function(shapeName) {
-        const card = document.querySelector(`.shape-card[data-shape="${shapeName}"]`);
+    // --- 2. Modal Logic ---
+    window.openModal = function(shape) {
+        currentModalShape = shape;
+        const card = document.querySelector(`.card[data-shape="${shape}"]`);
+        const color = card.getAttribute('data-color');
         
-        if (!card) return; // Safety check
+        document.getElementById('modal-title').textContent = `${shape} Analysis`;
+        colorPicker.value = color;
 
-        const formula = card.getAttribute('data-formula');
-        const defaultColor = card.getAttribute('data-color');
+        // Set Formula Text
+        let formulas = "";
+        if(shape === 'Circle') formulas = "A = πr² | C = 2πr";
+        if(shape === 'Triangle') formulas = "A = 0.5bh | P = a+b+c";
+        if(shape === 'Square') formulas = "A = s² | P = 4s";
+        if(shape === 'Rectangle') formulas = "A = wh | P = 2(w+h)";
         
-        // 1. Update Modal Content
-        document.getElementById('modal-title').textContent = shapeName + " Exploration";
-        document.getElementById('modal-formula').textContent = formula;
-        document.getElementById('modal-description').textContent = `The ${shapeName} is a fundamental 2D figure. Its area formula is:`;
-        colorPicker.value = defaultColor;
+        if(shape === 'Pentagon') formulas = "A ≈ 1.72s² | P = 5s";
+        
+        if(shape === 'Hexagon') formulas = "A ≈ 2.598s² | P = 6s";
+        
+        document.getElementById('modal-formula').textContent = formulas;
 
-        // 2. Insert Animated Shape (The key feature for visual enlargement)
-        modalVisualPlaceholder.innerHTML = ''; // Clear previous shape
+        // Create Enlarged Visual
+        modalVisual.innerHTML = '';
+        const div = document.createElement('div');
+        div.className = `shape ${shape.toLowerCase()}-shape enlarged-shape`;
         
-        // Dynamically create the shape element
-        const visualElement = document.createElement('div');
-        visualElement.className = `animated-${shapeName.toLowerCase()} enlarged-shape`;
-        
-        // Remove old class and set new class for dynamic coloring
-        if (currentModalShapeClass) {
-            modalVisualPlaceholder.classList.remove(currentModalShapeClass);
-        }
-        currentModalShapeClass = `modal-${shapeName.toLowerCase()}`;
-        modalVisualPlaceholder.classList.add(currentModalShapeClass);
-        
-        // Apply initial color to the new shape
-        visualElement.style.backgroundColor = defaultColor;
-        visualElement.style.borderColor = defaultColor;
-        visualElement.style.boxShadow = `0 0 30px ${defaultColor}80`;
-
-        modalVisualPlaceholder.appendChild(visualElement);
-        
-        // 3. Show Modal
-        modal.style.display = 'flex';
-        // Add active class for CSS transition/animation
-        setTimeout(() => modal.classList.add('active'), 10); 
-    }
+        applyShapeColor(div, shape, color);
+        modalVisual.appendChild(div);
+        modal.classList.add('active');
+    };
 
     window.closeModal = function() {
         modal.classList.remove('active');
-        setTimeout(() => modal.style.display = 'none', 300); // Wait for transition
-    }
-    
-    // Close modal when clicking outside (on the overlay)
+    };
     modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
+        if(e.target === modal) closeModal();
+    });
+
+    // --- 3. Live Color ---
+    colorPicker.addEventListener('input', (e) => {
+        const shapeDiv = modalVisual.querySelector('.shape');
+        if(shapeDiv) {
+            applyShapeColor(shapeDiv, currentModalShape, e.target.value);
         }
     });
 
-    // --- D. Live Customization (Color Picker) ---
-    colorPicker.addEventListener('input', (e) => {
-        const newColor = e.target.value;
-        const enlargedShape = modalVisualPlaceholder.querySelector('.enlarged-shape');
-        
-        if (enlargedShape) {
-            // Apply new color to the visual element
-            enlargedShape.style.backgroundColor = newColor;
-            enlargedShape.style.borderColor = newColor; 
-            enlargedShape.style.boxShadow = `0 0 30px ${newColor}80`;
-            
-            // Special handling for the triangle border property
-            if (enlargedShape.classList.contains('animated-triangle')) {
-                enlargedShape.style.borderBottomColor = newColor;
+    function applyShapeColor(element, shape, color) {
+        if(shape === 'Triangle') {
+            element.style.borderBottomColor = color;
+            element.style.filter = `drop-shadow(0 10px 10px ${color}66)`; 
+        } else {
+            element.style.backgroundColor = color;
+            // Pentagons and Hexagons use clip-path so standard box-shadow behaves oddly
+            if (shape === 'Pentagon' || shape === 'Hexagon') {
+                element.style.filter = `drop-shadow(0 10px 10px ${color}66)`;
+            } else {
+                element.style.boxShadow = `0 10px 20px -5px ${color}`;
             }
         }
-    });
-
-
-    // --- E. Calculation Functions (Your Original Logic) ---
-    function parseValue(id) {
-        const value = document.getElementById(id).value.trim();
-        return parseFloat(value);
     }
 
-    function setResult(id, result) {
-        document.getElementById(id).value = isNaN(result) ? "Invalid Input" : result.toFixed(2);
-    }
-    
-    window.getCircleArea = function() {
-        const radius = parseValue("radius");
-        const area = Math.PI * radius * radius;
-        setResult("circle-area", area);
+    // --- 4. Math Logic ---
+    function getValue(id) {
+        const val = parseFloat(document.getElementById(id).value);
+        return isNaN(val) ? 0 : Math.abs(val);
     }
 
-    window.getTriangleArea = function() {
-        const base = parseValue("triangle-base");
-        const height = parseValue("triangle-height");
-        const area = 0.5 * base * height;
-        setResult("triangle-area", area);
+    function output(id, val, unit, power=1) {
+        const suffix = power === 2 ? '²' : '';
+        document.getElementById(id).value = val === 0 ? '-' : `${val.toFixed(2)} ${unit}${suffix}`;
     }
 
-    window.getSquareArea = function() {
-        const side = parseValue("square-side");
-        const area = side * side;
-        setResult("square-area", area);
-    }
+    window.calculateCircle = function() {
+        const r = getValue('radius');
+        const unit = document.getElementById('circle-unit').value;
+        if(r > 0) {
+            output('circle-area', Math.PI * r * r, unit, 2);
+            output('circle-circumference', 2 * Math.PI * r, unit);
+        }
+    };
 
-    window.getRectangleArea = function() {
-        const width = parseValue("rectangle-width");
-        const height = parseValue("rectangle-height");
-        const area = width * height;
-        setResult("rectangle-area", area);
-    }
+    window.calculateTriangle = function() {
+        const b = getValue('triangle-base');
+        const h = getValue('triangle-height');
+        const unit = document.getElementById('triangle-unit').value;
+        if(b > 0 && h > 0) {
+            output('triangle-area', 0.5 * b * h, unit, 2);
+            output('triangle-perimeter', b + h + Math.sqrt(b*b + h*h), unit);
+        }
+    };
 
+    window.calculateSquare = function() {
+        const s = getValue('square-side');
+        const unit = document.getElementById('square-unit').value;
+        if(s > 0) {
+            output('square-area', s * s, unit, 2);
+            output('square-perimeter', 4 * s, unit);
+        }
+    };
+
+    window.calculateRectangle = function() {
+        const w = getValue('rectangle-width');
+        const h = getValue('rectangle-height');
+        const unit = document.getElementById('rectangle-unit').value;
+        if(w > 0 && h > 0) {
+            output('rectangle-area', w * h, unit, 2);
+            output('rectangle-perimeter', 2 * (w + h), unit);
+        }
+    };
+
+    window.calculatePentagon = function() {
+        const s = getValue('pentagon-side');
+        const unit = document.getElementById('pentagon-unit').value;
+        if(s > 0) {
+            output('pentagon-area', 1.72048 * s * s, unit, 2);
+            output('pentagon-perimeter', 5 * s, unit);
+        }
+    };
+
+    window.calculateHexagon = function() {
+        const s = getValue('hexagon-side');
+        const unit = document.getElementById('hexagon-unit').value;
+        if(s > 0) {
+            output('hexagon-area', 2.598076 * s * s, unit, 2);
+            output('hexagon-perimeter', 6 * s, unit);
+        }
+    };
 });

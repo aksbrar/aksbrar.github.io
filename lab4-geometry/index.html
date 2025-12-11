@@ -3,133 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Geometry Lab Explorer</title>
-    <link rel="stylesheet" href="style.css"> 
+    <title>Geometry Lab | Balanced</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
-<body class="style-minimal"> 
+<body>
 
-    <header class="control-panel">
-        <h1>🌌 Geometry Explorer Lab 04</h1>
-        <div class="controls-group">
-            <button id="mode-toggle">☀️/🌙 Toggle Mode</button>
+    <header class="main-header">
+        <div class="header-content">
+            <h1>Geometry <span class="highlight">Lab</span></h1>
+            <p>Balanced 6-Shape Analysis</p>
+        </div>
+        <div class="header-controls">
+            <button id="mode-toggle" class="icon-btn" aria-label="Toggle Dark Mode">
+                <span>🌗 Mode</span>
+            </button>
             <select id="style-selector">
-                <option value="minimal">Minimalist Style</option>
-                <option value="retro">Retro Grid Style</option>
-                <option value="neon">Neon Glow Style</option>
+                <option value="soft">Soft Palette</option>
+                <option value="elegant">Elegant Dark</option>
+                <option value="nature">Nature Tones</option>
             </select>
         </div>
     </header>
 
-    <main class="carousel-container">
-        <div class="carousel-track">
-            
-            <section class="shape-card circle-card" data-shape="Circle" data-formula="A = \pi r^2" data-color="#3498db">
+    <main class="grid-layout">
+        
+        <article class="card" data-shape="Circle" data-color="#6C63FF">
+            <div class="card-visual" onclick="openModal('Circle')">
+                <div class="shape circle-shape"></div>
+                <span class="expand-hint">Click to Expand</span>
+            </div>
+            <div class="card-content">
                 <h2>Circle</h2>
-                <div class="visual-container" onclick="openModal('Circle')">
-                    <div class="animated-circle"></div>
+                <div class="input-row">
+                    <div class="field-group small">
+                        <label>Unit</label>
+                        <select id="circle-unit"><option value="cm">cm</option><option value="m">m</option></select>
+                    </div>
+                    <div class="field-group">
+                        <label>Radius (r)</label>
+                        <input type="number" id="radius" placeholder="0.00">
+                    </div>
                 </div>
-                <p class="formula-preview">Area: $A = \pi r^2$</p>
+                <div class="divider"></div>
+                <div class="result-row">
+                    <div class="result-item"><span class="label">Area</span><input type="text" id="circle-area" readonly value="-"></div>
+                    <div class="result-item"><span class="label">Circum.</span><input type="text" id="circle-circumference" readonly value="-"></div>
+                </div>
+                <button class="calc-btn" onclick="calculateCircle()">Calculate</button>
+            </div>
+        </article>
 
-                <div class="calculator-section">
-                    <div class="input-group">
-                        <label for="radius">Radius (r):</label>
-                        <input type="number" id="radius" placeholder="Enter radius...">
-                    </div>
-                    <div class="input-group">
-                        <label for="circle-area">Area Result:</label>
-                        <input type="text" id="circle-area" readonly placeholder="0.00">
-                    </div>
-                    <button class="calc-btn" onclick="getCircleArea()">Calculate</button>
-                </div>
-            </section>
-            
-            <section class="shape-card triangle-card" data-shape="Triangle" data-formula="A = \frac{1}{2}bh" data-color="#e74c3c">
+        <article class="card" data-shape="Triangle" data-color="#FF6584">
+            <div class="card-visual" onclick="openModal('Triangle')">
+                <div class="shape triangle-shape"></div>
+                <span class="expand-hint">Click to Expand</span>
+            </div>
+            <div class="card-content">
                 <h2>Triangle</h2>
-                <div class="visual-container" onclick="openModal('Triangle')">
-                    <div class="animated-triangle"></div>
+                <div class="input-row">
+                    <div class="field-group small">
+                        <label>Unit</label>
+                        <select id="triangle-unit"><option value="cm">cm</option><option value="m">m</option></select>
+                    </div>
+                    <div class="field-group">
+                        <label>Base (b)</label>
+                        <input type="number" id="triangle-base" placeholder="0.00">
+                    </div>
+                    <div class="field-group">
+                        <label>Height (h)</label>
+                        <input type="number" id="triangle-height" placeholder="0.00">
+                    </div>
                 </div>
-                <p class="formula-preview">Area: $A = \frac{1}{2}bh$</p>
-                <div class="calculator-section">
-                    <div class="input-group">
-                        <label for="triangle-base">Base (b):</label>
-                        <input type="number" id="triangle-base" placeholder="Enter base...">
-                    </div>
-                    <div class="input-group">
-                        <label for="triangle-height">Height (h):</label>
-                        <input type="number" id="triangle-height" placeholder="Enter height...">
-                    </div>
-                    <div class="input-group">
-                        <label for="triangle-area">Area Result:</label>
-                        <input type="text" id="triangle-area" readonly placeholder="0.00">
-                    </div>
-                    <button class="calc-btn" onclick="getTriangleArea()">Calculate</button>
+                <div class="divider"></div>
+                <div class="result-row">
+                    <div class="result-item"><span class="label">Area</span><input type="text" id="triangle-area" readonly value="-"></div>
+                    <div class="result-item"><span class="label">Perim.</span><input type="text" id="triangle-perimeter" readonly value="-"></div>
                 </div>
-            </section>
-            
-            <section class="shape-card square-card" data-shape="Square" data-formula="A = s^2" data-color="#f1c40f">
-                <h2>Square</h2>
-                <div class="visual-container" onclick="openModal('Square')">
-                    <div class="animated-square"></div>
-                </div>
-                <p class="formula-preview">Area: $A = s^2$</p>
-                <div class="calculator-section">
-                    <div class="input-group">
-                        <label for="square-side">Side (s):</label>
-                        <input type="number" id="square-side" placeholder="Enter side...">
-                    </div>
-                    <div class="input-group">
-                        <label for="square-area">Area Result:</label>
-                        <input type="text" id="square-area" readonly placeholder="0.00">
-                    </div>
-                    <button class="calc-btn" onclick="getSquareArea()">Calculate</button>
-                </div>
-            </section>
+                <button class="calc-btn" onclick="calculateTriangle()">Calculate</button>
+            </div>
+        </article>
 
-            <section class="shape-card rectangle-card" data-shape="Rectangle" data-formula="A = w \cdot h" data-color="#9b59b6">
+        <article class="card" data-shape="Square" data-color="#FFC75F">
+            <div class="card-visual" onclick="openModal('Square')">
+                <div class="shape square-shape"></div>
+                <span class="expand-hint">Click to Expand</span>
+            </div>
+            <div class="card-content">
+                <h2>Square</h2>
+                <div class="input-row">
+                    <div class="field-group small">
+                        <label>Unit</label>
+                        <select id="square-unit"><option value="cm">cm</option><option value="m">m</option></select>
+                    </div>
+                    <div class="field-group">
+                        <label>Side (s)</label>
+                        <input type="number" id="square-side" placeholder="0.00">
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="result-row">
+                    <div class="result-item"><span class="label">Area</span><input type="text" id="square-area" readonly value="-"></div>
+                    <div class="result-item"><span class="label">Perim.</span><input type="text" id="square-perimeter" readonly value="-"></div>
+                </div>
+                <button class="calc-btn" onclick="calculateSquare()">Calculate</button>
+            </div>
+        </article>
+
+        <article class="card" data-shape="Rectangle" data-color="#45D7B6">
+            <div class="card-visual" onclick="openModal('Rectangle')">
+                <div class="shape rectangle-shape"></div>
+                <span class="expand-hint">Click to Expand</span>
+            </div>
+            <div class="card-content">
                 <h2>Rectangle</h2>
-                <div class="visual-container" onclick="openModal('Rectangle')">
-                    <div class="animated-rectangle"></div>
+                <div class="input-row">
+                    <div class="field-group small">
+                        <label>Unit</label>
+                        <select id="rectangle-unit"><option value="cm">cm</option><option value="m">m</option></select>
+                    </div>
+                    <div class="field-group">
+                        <label>Width (w)</label>
+                        <input type="number" id="rectangle-width" placeholder="0.00">
+                    </div>
+                    <div class="field-group">
+                        <label>Height (h)</label>
+                        <input type="number" id="rectangle-height" placeholder="0.00">
+                    </div>
                 </div>
-                <p class="formula-preview">Area: $A = w \cdot h$</p>
-                <div class="calculator-section">
-                    <div class="input-group">
-                        <label for="rectangle-width">Width (w):</label>
-                        <input type="number" id="rectangle-width" placeholder="Enter width...">
-                    </div>
-                    <div class="input-group">
-                        <label for="rectangle-height">Height (h):</label>
-                        <input type="number" id="rectangle-height" placeholder="Enter height...">
-                    </div>
-                    <div class="input-group">
-                        <label for="rectangle-area">Area Result:</label>
-                        <input type="text" id="rectangle-area" readonly placeholder="0.00">
-                    </div>
-                    <button class="calc-btn" onclick="getRectangleArea()">Calculate</button>
+                <div class="divider"></div>
+                <div class="result-row">
+                    <div class="result-item"><span class="label">Area</span><input type="text" id="rectangle-area" readonly value="-"></div>
+                    <div class="result-item"><span class="label">Perim.</span><input type="text" id="rectangle-perimeter" readonly value="-"></div>
                 </div>
-            </section>
-            
+                <button class="calc-btn" onclick="calculateRectangle()">Calculate</button>
             </div>
+        </article>
+
+        <article class="card" data-shape="Pentagon" data-color="#5C9CE6">
+            <div class="card-visual" onclick="openModal('Pentagon')">
+                <div class="shape pentagon-shape"></div>
+                <span class="expand-hint">Click to Expand</span>
+            </div>
+            <div class="card-content">
+                <h2>Pentagon</h2>
+                <div class="input-row">
+                    <div class="field-group small">
+                        <label>Unit</label>
+                        <select id="pentagon-unit"><option value="cm">cm</option><option value="m">m</option></select>
+                    </div>
+                    <div class="field-group">
+                        <label>Side (s)</label>
+                        <input type="number" id="pentagon-side" placeholder="0.00">
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="result-row">
+                    <div class="result-item"><span class="label">Area</span><input type="text" id="pentagon-area" readonly value="-"></div>
+                    <div class="result-item"><span class="label">Perim.</span><input type="text" id="pentagon-perimeter" readonly value="-"></div>
+                </div>
+                <button class="calc-btn" onclick="calculatePentagon()">Calculate</button>
+            </div>
+        </article>
+
+        <article class="card" data-shape="Hexagon" data-color="#FF6B6B">
+            <div class="card-visual" onclick="openModal('Hexagon')">
+                <div class="shape hexagon-shape"></div>
+                <span class="expand-hint">Click to Expand</span>
+            </div>
+            <div class="card-content">
+                <h2>Hexagon</h2>
+                <div class="input-row">
+                    <div class="field-group small">
+                        <label>Unit</label>
+                        <select id="hexagon-unit"><option value="cm">cm</option><option value="m">m</option></select>
+                    </div>
+                    <div class="field-group">
+                        <label>Side (s)</label>
+                        <input type="number" id="hexagon-side" placeholder="0.00">
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="result-row">
+                    <div class="result-item"><span class="label">Area</span><input type="text" id="hexagon-area" readonly value="-"></div>
+                    <div class="result-item"><span class="label">Perim.</span><input type="text" id="hexagon-perimeter" readonly value="-"></div>
+                </div>
+                <button class="calc-btn" onclick="calculateHexagon()">Calculate</button>
+            </div>
+        </article>
+
     </main>
-    
-    <div id="enlargement-modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal()">&times;</span>
-            <h2 id="modal-title"></h2>
+
+    <div id="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2 id="modal-title">Analysis</h2>
+            <div id="modal-visual-container"></div>
             
-            <div id="modal-visual-placeholder"></div>
-            
-            <div class="modal-details">
-                <p>Formula: <span id="modal-formula"></span></p>
-                <p id="modal-description"></p>
-            </div>
-            
-            <div class="customization-group">
-                <label for="color-picker">Live Color Customization:</label>
-                <input type="color" id="color-picker" value="#3498db">
+            <div class="modal-info">
+                <div class="info-block">
+                    <h4>Formula Reference</h4>
+                    <p id="modal-formula">...</p>
+                </div>
+                <div class="info-block">
+                    <h4>Appearance</h4>
+                    <label>Custom Color</label>
+                    <input type="color" id="color-picker" value="#6C63FF">
+                </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script> 
+    <script src="script.js"></script>
 </body>
 </html>
